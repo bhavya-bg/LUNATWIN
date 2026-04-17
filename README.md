@@ -1,34 +1,42 @@
-# Lung Nodule Detection
-Using a 3D Vision Transformer (ViT) to detect lung nodules from CT images through end-to-end training. The model is trained on [Luna16](https://luna16.grand-challenge.org/Home/) dataset consisting of 888 CT scans. A typical data point is shown below.
+# 🫁 LUNATWIN
 
-<img src = "imgs/sample.gif" width ="50%" />
+**LUNA16 3D Vision Transformer + Digital Twin for Pulmonary Nodule Analysis**
 
-<img src = "imgs/nodule_sample_0.gif" width ="22%" /><img src = "imgs/nodule_sample_1.gif" width ="22%" /><img src = "imgs/nodule_sample_2.gif" width ="22%" /><img src = "imgs/nodule_sample_3.gif" width ="22%" />
+An advanced system for automated lung nodule detection, progression tracking, and clinical decision support using 3D Vision Transformer and Digital Twin technology.
 
-## Data processing
-The data is already stored in metaImage format and can be loaded and processed at runtime. Use `dataset.preprocess()` to convert raw files to npy files for faster loading.
-The preprocessing procedure is simple: the images are randomly cropped into patches of size [40,128,128], normalized and randomly flipped. The dataset is split into 10 subsets and 1 of them is held out for testing.
+### 🚀 Live Demo
 
-## Training
-Configure the model with `model_config.json`, and training settings are in `train.py`. Then simply run
-```
-python train.py
-```
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://YOUR-LIVE-LINK-HERE.streamlit.app)
 
-## Results
-The model is trained for 100k steps using the settings in `model_config.json` and `train.py`. The final training loss is 0.0478, test accuracy=0.93, test iuo=0.276, and test auc=0.985. The testset ROC is shown below.
+---
 
-<img src = "imgs/roc.png" width ="50%" />
+### Features
 
-A curated set of bounding box predictions is shown below, along with their ground truth for comparison. The model struggles to precisely bound the nodule especially when it is close to the pleura or of small size. Nevertheless, it roughly indicates where one should look for it.
+- 3D Vision Transformer based nodule detection from CT scans
+- Patient-specific Digital Twin with longitudinal progression tracking
+- Automatic risk stratification (Low / Medium / High)
+- AI-powered Clinical Reasoning Report with recommendations
+- Interactive Streamlit web interface
 
-Predicted Bounding Boxes: 
+### Dataset
 
-<img src = "imgs/pred_bbox_0.gif" width ="22%" /><img src = "imgs/pred_bbox_3.gif" width ="22%" /><img src = "imgs/pred_bbox_7.gif" width ="22%" /><img src = "imgs/pred_bbox_62.gif" width ="22%" />
+Trained on the **LUNA16** dataset consisting of 888 thoracic CT scans.
 
-Ground Truth Bounding Boxes:
+### Model Architecture
 
-<img src = "imgs/gt_bbox_0.gif" width ="22%" /><img src = "imgs/gt_bbox_3.gif" width ="22%" /><img src = "imgs/gt_bbox_7.gif" width ="22%" /><img src = "imgs/gt_bbox_62.gif" width ="22%" />
+- Hybrid 3D CNN + Vision Transformer (VitDet3D)
+- End-to-end training for nodule detection and bounding box regression
+- Achieves high detection performance on LUNA16 benchmark
 
+### How to Run Locally
 
-See [`eval.ipynb`](./eval.ipynb) for details. This checkpoint is available for download [here](https://huggingface.co/rlsn/DeTr4LungNodule)
+```bash
+# Clone the repository
+git clone https://github.com/bhavya-bg/LUNATWIN.git
+cd LUNATWIN
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the application
+streamlit run app.py
